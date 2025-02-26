@@ -1,20 +1,15 @@
 import { validateEnv } from './config';
 import { uploadFile } from './uploads';
+
 async function main() {
   try {
     // Validate environment variables
     validateEnv();
 
-    // Verify authentication
-    const isAuthenticated = await verifyAuthentication();
-    if (!isAuthenticated) {
-      throw new Error('Authentication failed');
-    }
-
-
-    // Example: Upload a file (uncomment and specify path to test)
-    // const fileUrl = await uploadFile('/path/to/your/file.jpg');
-    // console.log('File uploaded:', fileUrl);
+    // Upload the file specified in FILE_PATH
+    const fileUrl = await uploadFile(process.env.FILE_PATH!);
+    console.log('File uploaded successfully!');
+    console.log('File:', fileUrl);
 
   } catch (error) {
     console.error('Error in main:', error);

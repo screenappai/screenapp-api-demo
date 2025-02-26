@@ -16,7 +16,8 @@ export const validateEnv = () => {
   const requiredEnvVars = [
     'AUTHENTICATION_TOKEN',
     'TEAM_ID',
-    'FOLDER_ID'
+    'FOLDER_ID',
+    'FILE_PATH'
   ];
 
   for (const envVar of requiredEnvVars) {
