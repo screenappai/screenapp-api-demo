@@ -1,0 +1,10 @@
+screenapp-api-demo/
+├── src/
+│   ├── config.ts
+│   ├── index.ts
+│   └── uploads.ts
+├── .env
+├── env.example
+├── .gitignore
+├── package.json
+└── tsconfig.json 
