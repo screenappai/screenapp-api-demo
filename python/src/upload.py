@@ -95,22 +95,35 @@ def finalize_upload(
     folder_id = os.getenv('FOLDER_ID')
     
     url = f"{API_BASE_URL}/files/upload/finalize/{team_id}/{folder_id}"
-    payload = {
-        "file": {
-            "fileId": file_id,
-            "contentType": content_type,
-            "name": file_name,
-            "description": description,
-            "recorderName": recorder_name,
-            "recorderEmail": recorder_email,
-            "needsConversion": needs_conversion
-        }
+    
+    # Build file object, filtering out None values
+    file_data = {
+        "fileId": file_id,
+        "contentType": content_type,
+        "name": file_name,
+        "needsConversion": needs_conversion
     }
     
-    response = requests.post(url, json=payload, headers=get_auth_headers())
-    response.raise_for_status()
+    # Only add optional fields if they have values
+    if description is not None:
+        file_data["description"] = description
+    if recorder_name is not None:
+        file_data["recorderName"] = recorder_name
+    if recorder_email is not None:
+        file_data["recorderEmail"] = recorder_email
     
-    return response.json()
+    payload = {"file": file_data}
+    
+    try:
+        response = requests.post(url, json=payload, headers=get_auth_headers())
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP Error: {e}")
+        print(f"Response status: {response.status_code}")
+        print(f"Response text: {response.text}")
+        print(f"Request payload: {payload}")
+        raise e
 
 def simple_upload(
     file_path: str,
