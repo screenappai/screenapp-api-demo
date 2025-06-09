@@ -1,3 +1,10 @@
+/**
+ * Multipart Upload for ScreenApp API
+ * 
+ * Suitable for large files, stateless apps, real-time uploads, and recording scenarios.
+ * Uploads files in 5MB chunks for better fault tolerance and memory efficiency.
+ */
+
 import axios from 'axios';
 import FormData from 'form-data';
 import { createReadStream } from 'fs';

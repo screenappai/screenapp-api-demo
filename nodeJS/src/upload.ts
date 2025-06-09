@@ -1,3 +1,10 @@
+/**
+ * Simple Upload for ScreenApp API
+ * 
+ * For other scenarios where multipart upload isn't needed - smaller files,
+ * simple applications, or when you don't need chunked upload functionality.
+ */
+
 import axios from 'axios';
 import { createReadStream, statSync } from 'fs';
 import { basename } from 'path';
