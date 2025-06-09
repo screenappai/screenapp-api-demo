@@ -64,7 +64,7 @@ async function finalizeUpload(fileId: string, uploadId: string, fileName: string
   return response.data.data;
 }
 
-export const uploadFile = async (filePath: string, contentType: string = 'video/mp4'): Promise<string> => {
+export const multipartUpload = async (filePath: string, contentType: string = 'video/mp4'): Promise<string> => {
   try {
     // Initialize the multipart upload
     const { fileId, uploadId } = await initializeUpload(contentType);
@@ -95,7 +95,7 @@ export const uploadFile = async (filePath: string, contentType: string = 'video/
 async function main() {
   try {
     // Example: Upload a file (uncomment and specify path to test)
-    // const fileUrl = await uploadFile('/path/to/your/file.mp4');
+    // const fileUrl = await multipartUpload('/path/to/your/file.mp4');
     // console.log('File uploaded:', fileUrl);
   } catch (error) {
     console.error('Error:', error);

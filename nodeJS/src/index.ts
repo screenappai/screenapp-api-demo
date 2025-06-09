@@ -1,5 +1,5 @@
 import { validateEnv } from './config';
-import { uploadFile } from './uploads';
+import { multipartUpload } from './uploads';
 
 async function main() {
   try {
@@ -7,7 +7,7 @@ async function main() {
     validateEnv();
 
     // Upload the file specified in FILE_PATH
-    const fileUrl = await uploadFile(process.env.FILE_PATH!);
+    const fileUrl = await multipartUpload(process.env.FILE_PATH!);
     console.log('File uploaded successfully!');
     console.log('File:', fileUrl);
 
