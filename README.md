@@ -44,7 +44,7 @@ This command runs the `multipart-upload.ts` file which contains all the upload l
 
 ## Python Example
 
-The Python example provides the same multipart upload functionality using Python.
+The Python example demonstrates multipart file upload and is contained in a single file: `src/multipart-upload.py`.
 
 ### Setup
 
@@ -65,8 +65,10 @@ The Python example provides the same multipart upload functionality using Python
 ### Running
 
 ```bash
-python src/main.py
+python src/multipart-upload.py
 ```
+
+This command runs the `multipart-upload.py` file which contains all the upload logic and main execution code.
 
 ## Environment Variables
 
@@ -106,8 +108,5 @@ python/
 ├── requirements.txt
 ├── .env.example
 └── src/
-    ├── main.py              # Main execution file
-    ├── uploads.py           # Upload functionality
-    ├── config.py            # Configuration utilities
-    └── __init__.py          # Package initialization
+    └── multipart-upload.py    # Main file with upload logic and execution
 ```
