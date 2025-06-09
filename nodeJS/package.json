@@ -2,12 +2,12 @@
   "name": "screenapp-api-demo",
   "version": "1.0.0",
   "description": "Demo project for Screenapp API",
-  "main": "dist/index.js",
+  "main": "dist/multipart-upload.js",
   "engines": {
     "node": ">=20.0.0"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "multipart-upload": "ts-node src/multipart-upload.ts",
     "build": "tsc"
   },
   "dependencies": {

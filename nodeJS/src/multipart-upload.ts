@@ -3,6 +3,7 @@ import FormData from 'form-data';
 import { createReadStream } from 'fs';
 import { basename } from 'path';
 import dotenv from 'dotenv';
+import { validateEnv } from './config';
 
 dotenv.config();
 
@@ -91,18 +92,24 @@ export const multipartUpload = async (filePath: string, contentType: string = 'v
   }
 };
 
-// Example usage
+// Main function to run the multipart upload demo
 async function main() {
   try {
-    // Example: Upload a file (uncomment and specify path to test)
-    // const fileUrl = await multipartUpload('/path/to/your/file.mp4');
-    // console.log('File uploaded:', fileUrl);
+    // Validate environment variables
+    validateEnv();
+
+    // Upload the file specified in FILE_PATH
+    const fileUrl = await multipartUpload(process.env.FILE_PATH!);
+    console.log('File uploaded successfully!');
+    console.log('File:', fileUrl);
+
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error in main:', error);
     process.exit(1);
   }
 }
 
+// Run main function if this file is executed directly
 if (require.main === module) {
   main();
 } 
