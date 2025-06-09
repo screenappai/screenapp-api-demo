@@ -11,19 +11,19 @@ This is a demo project showcasing how to use the ScreenApp API.
 ## Setup
 
 1. Clone this repository
-2. Install dependencies:
-
+2. Navigate to the Node.js example:
+   ```bash
+   cd nodeJS
+   ```
+3. Install dependencies:
    ```bash
    npm install
    ```
-
-3. Copy the environment variables file:
-
+4. Copy the environment variables file:
    ```bash
    cp env.example .env
    ```
-
-4. Update the `.env` file with your:
+5. Update the `.env` file with your:
    - `AUTHENTICATION_TOKEN` from ScreenApp
    - `TEAM_ID` from your ScreenApp account
    - `FOLDER_ID` where you want to upload files
@@ -31,10 +31,15 @@ This is a demo project showcasing how to use the ScreenApp API.
 
 ## Running the Example
 
-To run the example:
+To run the Node.js example:
 
-```bash
-npm start
-```
+1. Navigate to the nodeJS folder (if not already there):
+   ```bash
+   cd nodeJS
+   ```
+2. Run the example:
+   ```bash
+   npm start
+   ```
 
 This will execute the demo script which shows how to interact with the ScreenApp API.
