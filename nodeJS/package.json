@@ -8,6 +8,7 @@
   },
   "scripts": {
     "multipart-upload": "ts-node src/multipart-upload.ts",
+    "upload": "ts-node src/upload.ts",
     "build": "tsc"
   },
   "dependencies": {

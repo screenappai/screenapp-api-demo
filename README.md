@@ -16,7 +16,10 @@ This repository contains demo projects showcasing how to use the ScreenApp API f
 
 ## Node.js Example
 
-The Node.js example demonstrates multipart file upload using TypeScript and is contained in a single file: `src/multipart-upload.ts`.
+The Node.js example demonstrates two different file upload methods using TypeScript:
+
+- **Simple Upload** (`src/upload.ts`) - For smaller files using a single upload request
+- **Multipart Upload** (`src/multipart-upload.ts`) - For larger files using chunked upload
 
 ### Setup
 
@@ -36,11 +39,27 @@ The Node.js example demonstrates multipart file upload using TypeScript and is c
 
 ### Running
 
+For simple upload (recommended for smaller files):
+```bash
+npm run upload
+```
+
+For multipart upload (recommended for larger files):
 ```bash
 npm run multipart-upload
 ```
 
-This command runs the `multipart-upload.ts` file which contains all the upload logic and main execution code.
+#### Simple Upload Flow
+The simple upload (`upload.ts`) follows this process:
+1. Request an upload URL from the API
+2. Upload the file directly to the received URL
+3. Finalize the upload with metadata
+
+#### Multipart Upload Flow
+The multipart upload (`multipart-upload.ts`) follows this process:
+1. Initialize a multipart upload session
+2. Upload the file in 5MB chunks
+3. Finalize the multipart upload
 
 ## Python Example
 
@@ -98,7 +117,8 @@ nodeJS/
 ├── tsconfig.json
 ├── env.example
 └── src/
-    ├── multipart-upload.ts    # Main file with upload logic and execution
+    ├── upload.ts              # Simple upload implementation
+    ├── multipart-upload.ts    # Multipart upload implementation
     └── config.ts             # Configuration and validation utilities
 ```
 
