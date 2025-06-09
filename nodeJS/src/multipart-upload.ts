@@ -1,8 +1,16 @@
+/**
+ * Multipart Upload for ScreenApp API
+ * 
+ * Suitable for large files, stateless apps, real-time uploads, and recording scenarios.
+ * Uploads files in 5MB chunks for better fault tolerance and memory efficiency.
+ */
+
 import axios from 'axios';
 import FormData from 'form-data';
 import { createReadStream } from 'fs';
 import { basename } from 'path';
 import dotenv from 'dotenv';
+import { validateEnv } from './config';
 
 dotenv.config();
 
@@ -64,7 +72,7 @@ async function finalizeUpload(fileId: string, uploadId: string, fileName: string
   return response.data.data;
 }
 
-export const uploadFile = async (filePath: string, contentType: string = 'video/mp4'): Promise<string> => {
+export const multipartUpload = async (filePath: string, contentType: string = 'video/mp4'): Promise<string> => {
   try {
     // Initialize the multipart upload
     const { fileId, uploadId } = await initializeUpload(contentType);
@@ -91,18 +99,24 @@ export const uploadFile = async (filePath: string, contentType: string = 'video/
   }
 };
 
-// Example usage
+// Main function to run the multipart upload demo
 async function main() {
   try {
-    // Example: Upload a file (uncomment and specify path to test)
-    // const fileUrl = await uploadFile('/path/to/your/file.mp4');
-    // console.log('File uploaded:', fileUrl);
+    // Validate environment variables
+    validateEnv();
+
+    // Upload the file specified in FILE_PATH
+    const fileUrl = await multipartUpload(process.env.FILE_PATH!);
+    console.log('File uploaded successfully!');
+    console.log('File:', fileUrl);
+
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error in main:', error);
     process.exit(1);
   }
 }
 
+// Run main function if this file is executed directly
 if (require.main === module) {
   main();
 } 
