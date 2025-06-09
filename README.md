@@ -63,11 +63,13 @@ The multipart upload (`multipart-upload.ts`) follows this process:
 
 ## Python Example
 
-The Python example demonstrates multipart file upload and is contained in a single file: `src/multipart-upload.py`.
+The Python example provides two upload methods:
+1. **Simple Upload** (`upload.py`) - For smaller files using direct upload
+2. **Multipart Upload** (`multipart-upload.py`) - For larger files using chunked upload
 
-### Setup
+## Setup
 
-1. Navigate to the Python example:
+1. Navigate to the Python directory:
    ```bash
    cd python
    ```
@@ -75,7 +77,7 @@ The Python example demonstrates multipart file upload and is contained in a sing
    ```bash
    pip install -r requirements.txt
    ```
-3. Copy the environment variables file:
+3. Copy the environment file:
    ```bash
    cp .env.example .env
    ```
@@ -83,11 +85,17 @@ The Python example demonstrates multipart file upload and is contained in a sing
 
 ### Running
 
+**Simple Upload:**
+```bash
+python src/upload.py
+```
+
+**Multipart Upload:**
 ```bash
 python src/multipart-upload.py
 ```
 
-This command runs the `multipart-upload.py` file which contains all the upload logic and main execution code.
+The simple upload is suitable for smaller files, while multipart upload is recommended for larger files as it uploads in chunks for better reliability.
 
 ## Environment Variables
 
@@ -100,13 +108,18 @@ Both examples require the same environment variables:
 
 ## What the Examples Do
 
-Both examples demonstrate multipart file upload by:
+**Simple Upload** demonstrates:
+1. Requesting an upload URL from the ScreenApp API
+2. Uploading the file directly to the presigned URL
+3. Finalizing the upload process
+
+**Multipart Upload** demonstrates:
 1. Validating environment configuration
 2. Initializing a multipart upload session with the ScreenApp API
 3. Uploading a video file in 5MB chunks
 4. Finalizing the upload process
 
-The examples will upload the file specified in `FILE_PATH` to your ScreenApp account using efficient multipart upload for large files.
+Both examples will upload the file specified in `FILE_PATH` to your ScreenApp account.
 
 ## Project Structure
 
@@ -128,5 +141,6 @@ python/
 ├── requirements.txt
 ├── .env.example
 └── src/
-    └── multipart-upload.py    # Main file with upload logic and execution
+    ├── upload.py             # Simple upload implementation
+    └── multipart-upload.py   # Multipart upload implementation
 ```
